@@ -1,17 +1,22 @@
+const path = require('path');
 const { Storage } = require('@google-cloud/storage');
 
 const GOOGLE_CLOUD_PROJECT_ID = "henesis-wallet-dev"; // Replace with your project ID
-const GOOGLE_CLOUD_KEYFILE = "./test.json"; // Replace with the path to the downloaded private key
+const GOOGLE_CLOUD_KEYFILE = path.join(__dirname, "./test.json"); // Replace with the path to the downloaded private key
+
+console.log(GOOGLE_CLOUD_KEYFILE)
 
 const storage = new Storage({
   projectId: GOOGLE_CLOUD_PROJECT_ID,
   keyFilename: GOOGLE_CLOUD_KEYFILE,
 });
 
-const bucketName = "test";
+// bucketName GCS 버킷명
+const bucketName = "bkt-dev-billing-dev";
+
 const mimetype = "application/json";
 const content = JSON.stringify({ key: "test" });
-const gcsFileName = "test";
+const gcsFileName = "hello4.txt";
 
 
 const sendUploadToGCS = () => {
