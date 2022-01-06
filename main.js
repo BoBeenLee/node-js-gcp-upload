@@ -1,10 +1,10 @@
-const path = require('path');
-const { Storage } = require('@google-cloud/storage');
+const path = require("path");
+const { Storage } = require("@google-cloud/storage");
 
 const GOOGLE_CLOUD_PROJECT_ID = "henesis-wallet-dev"; // Replace with your project ID
 const GOOGLE_CLOUD_KEYFILE = path.join(__dirname, "./test.json"); // Replace with the path to the downloaded private key
 
-console.log(GOOGLE_CLOUD_KEYFILE)
+console.log(GOOGLE_CLOUD_KEYFILE);
 
 const storage = new Storage({
   projectId: GOOGLE_CLOUD_PROJECT_ID,
@@ -18,7 +18,6 @@ const mimetype = "application/json";
 const content = JSON.stringify({ key: "test" });
 const gcsFileName = "hello4.txt";
 
-
 const sendUploadToGCS = () => {
   return new Promise((resolve, reject) => {
     try {
@@ -29,6 +28,7 @@ const sendUploadToGCS = () => {
         metadata: {
           contentType: mimetype,
         },
+        public: true,
       });
 
       writer.on("error", (error) => {
@@ -48,10 +48,9 @@ const sendUploadToGCS = () => {
   });
 };
 
-
 const main = async () => {
-    const response = await sendUploadToGCS();
-    console.log(response.url);
+  const response = await sendUploadToGCS();
+  console.log(response.url);
 };
 
 main();
