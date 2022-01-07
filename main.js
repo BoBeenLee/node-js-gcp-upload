@@ -12,7 +12,7 @@ const storage = new Storage({
 });
 
 // bucketName GCS 버킷명
-const bucketName = "bkt-dev-billing-dev";
+const bucketName = "bkt-dev-billing";
 
 const mimetype = "application/json";
 const content = JSON.stringify({ key: "test" });
